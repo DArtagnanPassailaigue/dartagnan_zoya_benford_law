@@ -1,3 +1,6 @@
+import os
+import csv
+
 def printMenu():
     '''The menu that allows users to choose an action in the program'''
     print('''
@@ -12,9 +15,21 @@ userInput = ""
 reportOption = "1"
 fraudOption = "2"
 exitCondition = "0"
+salesDict = []
+word = "Sales"
 
 def salesReport():
-    pass
+    '''Pulls the sales information and stores it in a temporary dictionary file'''
+    folder = os.getcwd()
+    fileName = str(folder) + "\\sales.csv"
+    with open(fileName, "r") as readFile:
+        salesFile = csv.reader(readFile, delimiter=',')
+        # reads the sales file and states the delimiter
+        for row in salesFile:
+            currentNumber = row[1]
+            salesDict.append(currentNumber)
+    salesDict.pop(0)
+    print(salesDict)
 
 def benfordLawCheck():
     pass
@@ -35,6 +50,8 @@ while userInput != exitCondition:
         salesReport()
     elif userInput == fraudOption: 
         benfordLawCheck()
+    elif userInput == exitCondition:
+        pass
     else:
         print("Please type in a valid option (1,2, or 0): ")
 
