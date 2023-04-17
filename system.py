@@ -32,7 +32,7 @@ def salesReport():
     print("Sales information recorded and prepared for analyzation.")
 
 def benfordLawCheck():
-    print
+    pass
 
 def numericRep():
     pass
