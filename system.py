@@ -29,7 +29,7 @@ def salesReport():
             currentNumber = row[1]
             salesDict.append(currentNumber)
     salesDict.pop(0)
-    print(salesDict)
+    print("Sales information recorded and prepared for analyzation.")
 
 def benfordLawCheck():
     pass
