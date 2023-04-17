@@ -1,5 +1,3 @@
-import matplotlib
-
 def printMenu():
     '''The menu that allows users to choose an action in the program'''
     print('''
@@ -36,7 +34,7 @@ while userInput != exitCondition:
     if userInput == reportOption:
         salesReport()
     elif userInput == fraudOption: 
-        benfordLawCheck():
+        benfordLawCheck()
     else:
         print("Please type in a valid option (1,2, or 0): ")
 
