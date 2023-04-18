@@ -15,8 +15,8 @@ userInput = ""
 reportOption = "1"
 fraudOption = "2"
 exitCondition = "0"
-salesDict = []
-word = "Sales"
+salesList = []
+benfordList = []
 
 def salesReport():
     '''Pulls the sales information and stores it in a temporary dictionary file'''
@@ -27,24 +27,37 @@ def salesReport():
         # reads the sales file and states the delimiter
         for row in salesFile:
             currentNumber = row[1]
-            salesDict.append(currentNumber)
-    salesDict.pop(0)
+            salesList.append(currentNumber)
+    salesList.pop(0)
     print("Sales information recorded and prepared for analyzation.")
-
+    
+def countRows(rows):
+    folder = os.getcwd()
+    fileName = str(folder) + "\\sales.csv"
+    for row in fileName:
+        row[1]
+        rows = rows+1
+    return rows
+            
 def benfordLawCheck():
     pass
 
-def numericRep():
-    pass
+def numericRep(num):
+    calculation = ("Frequency of", num, ":", benfordList[num] * 100 / countRows(0))
+    return calculation
 
 def visualRep():
     pass
 
 def resultsFilePrint():
-    pass
+    folder = os.getcwd()
+    fileName = str(folder) + "\\results.csv"
+    with open(fileName, "w") as file:
+        for i in range(9):
+            file.writeline(numericRep(i))
 
 while userInput != exitCondition:
-    printMenu() 
+    printMenu()
     userInput = input() 
     if userInput == reportOption:
         salesReport()
