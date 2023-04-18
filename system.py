@@ -54,7 +54,7 @@ def resultsFilePrint():
     fileName = str(folder) + "\\results.csv"
     with open(fileName, "w") as file:
         for i in range(9):
-            file.writeline(numericRep(i))
+            file.write(str(numericRep(i)))
 
 while userInput != exitCondition:
     printMenu()
