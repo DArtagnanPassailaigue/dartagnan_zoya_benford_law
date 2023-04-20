@@ -43,7 +43,7 @@ def benfordLawCheck():
     pass
 
 def numericRep(num):
-    calculation = ("Frequency of", num, ":", benfordList[num] * 100 / countRows(0))
+    calculation = ("Frequency of", num, ":", benfordList[num] * 100 / countRows(0), "%")
     return calculation
 
 def visualRep():
