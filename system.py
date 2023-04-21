@@ -1,5 +1,6 @@
 import os
 import csv
+import math
 
 def printMenu():
     '''The menu that allows users to choose an action in the program'''
@@ -33,6 +34,7 @@ def salesReport():
     print("Sales information recorded and prepared for analyzation.")
     
 def countRows(rows):
+    '''Counts the amount of rows in the sales.csv file'''
     folder = os.getcwd()
     fileName = str(folder) + "\\sales.csv"
     for row in fileName:
@@ -41,6 +43,7 @@ def countRows(rows):
     return rows
             
 def benfordLawCheck():
+    '''Uses benford's law to check the amount of times each first digit is present in the sales data'''
     benlist = []
     count1 = 0
     count2 = 0
@@ -72,20 +75,23 @@ def benfordLawCheck():
         resultsFilePrint_Num(valueList[i], i, total)
         
 def detectFraud(num, total):
+    '''Checks the percentage of the first digit to see if fraud is present'''
     if numericRep(num, total) == "29%" or numericRep(num, total) == "30%" or numericRep(num, total) == "31%" or numericRep(num, total) == "32%":
         print("Fraud not detected :3")
     else:
         print("!!FRAUD DETECTED!!FRAUD DETECTED!!FRAUD DETECTED!!FRAUD DETECTED!!FRAUD DETECTED!!FRAUD DETECTED!!FRAUD DETECTED!!")
 
 def numericRep(num, total):
+    '''Calculates the percentage of times a first digit is present in all of the sales data'''
     calculation = num * 100 / total
-    calculation  = str(calculation) + "%"
+    calculation  = str(math.trunc(calculation)) + "%"
     return calculation
 
 def visualRep():
     pass
 
 def resultsFilePrint_Num(var, num, total):
+    '''Prints the numeric representation of the data to the results.csv file'''
     text = "\n" + str(num) + "," + str(numericRep(var, total))
     folder = os.getcwd()
     fileName = str(folder) + "\\results.csv"
