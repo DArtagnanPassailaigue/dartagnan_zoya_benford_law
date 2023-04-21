@@ -18,6 +18,7 @@ exitCondition = "0"
 salesList = []
 benfordList = []
 
+
 def salesReport():
     '''Pulls the sales information and stores it in a temporary dictionary file'''
     folder = os.getcwd()
@@ -40,21 +41,56 @@ def countRows(rows):
     return rows
             
 def benfordLawCheck():
-    pass
+    benlist = []
+    count1 = 0
+    count2 = 0
+    count3 = 0
+    count4 = 0
+    count5 = 0
+    count6 = 0
+    count7 = 0
+    count8 = 0
+    count9 = 0
+    for i in salesList:
+        benford = (i[0])
+        benlist.append(benford)
+    for i in benlist:
+        count1 = benlist.count('1')
+        count2 = benlist.count('2')
+        count3 = benlist.count('3')
+        count4 = benlist.count('4')
+        count5 = benlist.count('5')
+        count6 = benlist.count('6')
+        count7 = benlist.count('7')
+        count8 = benlist.count('8')
+        count9 = benlist.count('9')
+    print("Numbers Recorded:", count1, count2, count3, count4, count5, count6, count7, count8, count9)
+    total = count1+count2+count3+count4+count5+count6+count7+count9
+    detectFraud(count1, total)
+    valueList = [count1, count2, count3, count4, count5, count6, count7, count8, count9]
+    for i in range(9):
+        resultsFilePrint_Num(valueList[i], i, total)
+        
+def detectFraud(num, total):
+    if numericRep(num, total) == "29%" or numericRep(num, total) == "30%" or numericRep(num, total) == "31%" or numericRep(num, total) == "32%":
+        print("Fraud not detected :3")
+    else:
+        print("!!FRAUD DETECTED!!FRAUD DETECTED!!FRAUD DETECTED!!FRAUD DETECTED!!FRAUD DETECTED!!FRAUD DETECTED!!FRAUD DETECTED!!")
 
-def numericRep(num):
-    calculation = ("Frequency of", num, ":", benfordList[num] * 100 / countRows(0), "%")
+def numericRep(num, total):
+    calculation = num * 100 / total
+    calculation  = str(calculation) + "%"
     return calculation
 
 def visualRep():
     pass
 
-def resultsFilePrint():
+def resultsFilePrint_Num(var, num, total):
+    text = "\n" + str(num) + "," + str(numericRep(var, total))
     folder = os.getcwd()
     fileName = str(folder) + "\\results.csv"
-    with open(fileName, "w") as file:
-        for i in range(9):
-            file.write(str(numericRep(i)))
+    with open(fileName, "a") as file:
+        file.write(text)
 
 while userInput != exitCondition:
     printMenu()
